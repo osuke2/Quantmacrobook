@@ -22,3 +22,4 @@ grid_w = linspace(w_min,w_max,nw);
 grid_a = linspace(a_min,a_max,na);
 
 util2 = CRRA((1.0+rent).*grid_a, gamma);
+util1 = CRRA(grid_w-grid_a, gamma);
