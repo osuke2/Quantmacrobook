@@ -1,11 +1,7 @@
-function util =CRRA(cons,gamma);
-if gamma == 1
-    util = log (cons);
-else
-    util = cons.^(1-gamma)./(1-gamma);
-end
-end
-return;
+clear;
+clear global;
+close all;
+format short;
 
 beta = 0.985.^30;
 gamma = 2.0;
@@ -22,4 +18,12 @@ grid_w = linspace(w_min,w_max,nw);
 grid_a = linspace(a_min,a_max,na);
 
 util2 = CRRA((1.0+rent).*grid_a, gamma);
-util1 = CRRA(grid_w-grid_a, gamma);
+
+figure;
+plot(grid_a,util2,'-o','Fontsize',12,'linewidth',3);
+xlabel('老年期の資産','Fontsize',16);
+ylabel('老年期の効用','Fontsize',16);
+xlim([a_min,a_max]);
+set(gca,'Fontsize',16);
+grid on;
+
