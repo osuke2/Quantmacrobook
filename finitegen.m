@@ -20,10 +20,28 @@ grid_a = linspace(a_min,a_max,na);
 util2 = CRRA((1.0+rent).*grid_a, gamma);
 
 figure;
-plot(grid_a,util2,'-o','color','red','MarkerEdgeColor','k','MarkerSize',12,'linewidth',3);
+plot(grid_a,util2,'-o','color','red','MarkerEdgeColor','r','MarkerSize',12,'linewidth',3);
 xlabel('老年期の資産','Fontsize',16);
 ylabel('老年期の効用','Fontsize',16);
 xlim([a_min,a_max]);
-set(gca,'Fontsize',16);
+set(gca,'Fontsize',8);
 grid on;
+
+obj = zeros(na, nw);
+
+for i = 1:nw;
+    for j = 1:na;
+        cons = grid_w(i) - grid_a(j);
+        if cons > 0.0
+            obj (j,i) = CRRA(cons,gamma) + beta*CRRA((1+rent)*grid_a(j));
+        else 
+            obj (j,i) = -10000.0;
+        end
+    end
+end
+
+
+      
+
+       
 
