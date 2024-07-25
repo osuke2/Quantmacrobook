@@ -19,13 +19,6 @@ grid_a = linspace(a_min,a_max,na);
 
 util2 = CRRA((1.0+rent).*grid_a, gamma);
 
-figure;
-plot(grid_a,util2,'-o','color','red','MarkerEdgeColor','r','MarkerSize',12,'linewidth',3);
-xlabel('老年期の資産','Fontsize',16);
-ylabel('老年期の効用','Fontsize',16);
-xlim([a_min,a_max]);
-set(gca,'Fontsize',8);
-grid on;
 
 % calculate all cases
 obj = zeros(na, nw);
@@ -41,7 +34,31 @@ for i = 1:nw;
     end
 end
 
-
+% policy function
+pol = zeros(nw,1);
+for i =1:nw
+    [maxv, maxl] = max(obj(:,i)); % in i line,[the maximal index、the argument of that]
+    pol(i) = grid_a(maxl); % change maxl as asset
+    disp(['  maxv = ', num2str(maxv)]);
+end
+figure;
+subplot(2,1,1);
+plot(grid_w,pol, 'MarkerSize', 12, 'linewidth', 3);
+xlabel('若年期の所得：w', 'Fontsize', 16);
+ylabel('若年期の貯蓄：a', 'Fontsize', 16);
+xlim([0, 1]);
+ylim([0, 0.4]);
+set(gca, 'Fontsize', 16);
+grid on;
+hold on;
+subplot(2,1,2);
+plot(grid_a,util2,'-o','color','red','MarkerEdgeColor','r','MarkerSize',12,'linewidth',3);
+xlabel('老年期の資産','Fontsize',16);
+ylabel('老年期の効用','Fontsize',16);
+xlim([a_min,a_max]);
+set(gca,'Fontsize',8);
+grid on;
+hold off;
       
 
        
