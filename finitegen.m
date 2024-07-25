@@ -27,13 +27,14 @@ xlim([a_min,a_max]);
 set(gca,'Fontsize',8);
 grid on;
 
+% calculate all cases
 obj = zeros(na, nw);
 
 for i = 1:nw;
     for j = 1:na;
         cons = grid_w(i) - grid_a(j);
         if cons > 0.0
-            obj (j,i) = CRRA(cons,gamma) + beta*CRRA((1+rent)*grid_a(j));
+            obj (j,i) = CRRA(cons,gamma) + beta*CRRA((1+rent)*grid_a(j),gamma);
         else 
             obj (j,i) = -10000.0;
         end
