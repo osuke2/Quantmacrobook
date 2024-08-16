@@ -3,6 +3,8 @@ clear global;
 close all;
 format short;
 
+global w beta gamma rent
+
 beta = 0.985.^30;
 gamma = 2.0;
 rent = 1.025.^30-1.0;

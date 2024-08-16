@@ -5,5 +5,3 @@ if gamma == 1.0
 else
     util = cons.^(1-gamma)./(1-gamma);
 end
-
-
