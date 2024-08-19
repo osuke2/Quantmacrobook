@@ -1,9 +1,14 @@
 function residual = resid_projection(coef)
+
 global grid_w beta gamma rent;
-p = policy(coef,eval);
+
+p = policy(coef,grid_w);
+
 c1 = grid_w - p;
+
 %c1っていう行列のサイズ e.g.)c1が2×3ならsize(c1)=[2,3]
 [r,c] = size(c1);
+
 % rとcの大きい方
 ng = max (r,c);
 
@@ -16,7 +21,7 @@ for i = 1:ng
     end
 end
 
-c2 = (1.0+rent).*a;
+c2 = (1.0+rent).*p;
 
 mu2 = zeros(ng,1);
 for i = 1:ng

@@ -4,14 +4,15 @@ close all;
 
 global dim_app nw grid_w beta gamma rent
 
-beta  = 0.985.^30;     
-gamma = 2.0;           
-rent  = 1.025.^30-1.0; 
+beta  = 0.985.^30;     % 割引因子
+gamma = 2.0;           % 相対的危険回避度
+rent  = 1.025.^30-1.0; % 純利子率
 
-nw    =  10;  
-w_max = 1.0;  
-w_min = 0.1;  
+nw    =  10;  % 所得グリッドの数
+w_max = 1.0;  % 所得グリッドの最大値
+w_min = 0.1;  % 所得グリッドの最小値
 
+tic % 計算時間をカウント開始
 
 disp(' ');
 disp('-+-+-+- Solve two period model using projection method -+-+-+-');
@@ -55,5 +56,4 @@ ylim([0,0.5]);
 set(gca,'Fontsize',16);
 grid on;
 
-disp(tic);
 return;
