@@ -6,12 +6,13 @@ p = policy(coef,grid_w);
 
 c1 = grid_w - p;
 
-%c1っていう行列のサイズ e.g.)c1が2×3ならsize(c1)=[2,3]
+% c1っていう行列のサイズ e.g.)c1が2×3ならsize(c1)=[2,3]
+% つまり消費量
 [r,c] = size(c1);
 
 % rとcの大きい方
 ng = max (r,c);
-
+% ngをこんな紛らわしい書き方するのは多分muの定義でc1使うから
 mu1 = zeros(ng,1);
 for i = 1:ng
     if c1(i)>0.0
@@ -33,5 +34,5 @@ for i = 1:ng
 end
 
 residual = beta*(1.0+rent)*(mu2./mu1)-1.0;
-
+% mu2/mu1は要素ごとの割り算で、-1.0は各要素から1引いてるらしい
 return;

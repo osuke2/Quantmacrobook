@@ -22,14 +22,14 @@ dim_app = 1;
 
 coef_ini = [0.1, 0.35];
 
-options = optimoptions('fsolve','Algorithm','levenberg-marquardt','MaxFunctionEvaluations',1000)
+options = optimoptions('fsolve','Algorithm','levenberg-marquardt','MaxFunctionEvaluations',1000);
 
 coef = fsolve(@resid_projection, coef_ini, options);
 
 disp(' ');
-disp('approximated psi0');
+disp('approximated theta0');
 disp(coef(1));
-disp('approximated psi1');
+disp('approximated theta1');
 disp(coef(2));
 
 coef1 = (beta*(1+rent))^(-1/gamma);
@@ -39,9 +39,9 @@ icept = 0.0;
 slope = coef2;
 
 disp(' ');
-disp('true psi0');
+disp('true theta0');
 disp(icept);
-disp('true psi1');
+disp('true theta1');
 disp(slope);
 
 next_a = policy(coef, grid_w);
@@ -55,5 +55,5 @@ ylim([0,0.5]);
 set(gca,'Fontsize',16);
 grid on;
 
-disp(tic);
+
 return;
