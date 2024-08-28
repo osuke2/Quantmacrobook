@@ -19,7 +19,7 @@ a_min = 0.025;
 grid_w = linspace(w_min,w_max,nw);
 %貯蓄並べる
 a_gs = zeros(nw,1);
-%探す、パッケージでeasy!
+%Which is the best? Solve with package!
 for i = 1:nw
     w = grid_w(i);
     [a_gs(i),fval] = fminbnd(@obj_two_period,w*0.01, w*2.0);
