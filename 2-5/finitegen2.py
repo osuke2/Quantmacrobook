@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import funcs as tool
-from scipy.optimize import fmin
+from scipy.optimize import minimize
 
 beta = 0.985**30
 gamma = 2.0
@@ -16,9 +16,10 @@ pol_a = np.zeros(nw)
 
 for i in range (nw):
     arg = (grid_w[i], beta, gamma, rent,)
-    pol_a[i] = fmin(tool.obj_two_period, [0.00001], args=arg)
+    result = minimize(tool.obj_two_period, x0=[0.01], args=arg, bounds=[(0, grid_w[i])])
+    pol_a[i] = result.x[0]
 
 plt.figure()
-plt.plot(grid_w,pol_a)
-plt.ylim(0, 0.5)
+plt.plot(grid_w,pol_a, marker='o', color='blue', label='policy')
+plt.grid(True)
 plt.show()
