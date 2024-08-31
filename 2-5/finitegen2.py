@@ -17,7 +17,7 @@ pol_a = np.zeros(nw)
 for i in range (nw):
     arg = (grid_w[i], beta, gamma, rent,)
     result = minimize(tool.obj_two_period, x0=[0.01], args=arg, bounds=[(0, grid_w[i])])
-    pol_a[i] = result.x[0]
+    pol_a[i] = result.x[0] 
 
 plt.figure()
 plt.plot(grid_w,pol_a, marker='o', color='blue', label='policy')
