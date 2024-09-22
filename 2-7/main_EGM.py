@@ -27,3 +27,5 @@ plt.figure()
 plt.plot(w, grid_a, marker='o', color='blue', label='policy')
 plt.grid(True)
 plt.show()
+
+# オイラー方程式にaを代入して、効用関数の一階微分の逆関数から最適消費を求められて、minimizationがいらない！
