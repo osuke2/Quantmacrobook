@@ -12,12 +12,12 @@ def resid_three_period1(a2,a1,w1,e1,endow,w2,e2,tran,ny,grid_a,a2_nl,rent,beta,g
     else:
         mu1 = 10000.0
 
-    mu2 = np.zeros((ny,1))
+    mu2 = np.zeros(ny)
     for i in range (ny):  
-        a3_approx = interp1d(grid_a, a2_nl[:,i], kind = 'linear')
+        a3_approx = interp1d(grid_a, a2_nl[:,i], kind = 'linear', fill_value='extrapolate')
         a3_value = a3_approx(a2) 
-        cons = (1.0+rent)*a2 + w2*e2 -a3_value #ここでconsが
-        mu2 = CRRA(cons,gamma)
+        cons = (1.0+rent)*a2 + w2*e2 -a3_value #ここでconsがスカラーになってる？
+        mu2[i] = CRRA(cons,gamma)
 
     exp_val = np.dot(tran[e1,:],mu2)
     resid1 = beta*(1.0 + rent)*(exp_val/mu1) - 1.0

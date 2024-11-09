@@ -34,4 +34,26 @@ for  j in range(ny):
         a1 = grid_a[i]
         e1 = [j]
         arg = (a1,w1,e1,endow,w2,e2,tran,ny,grid_a,a2_nl,rent,beta,gamma,)
-        a1_nl[i,j] = fsolve(tool.resid_three_period1, [0.01], args = arg)         
+        a1_nl[i,j] = fsolve(tool.resid_three_period1, [0.01], args = arg)   
+
+plt.figure()
+plt.plot(grid_a, a2_nl[:,0], marker='o', color='blue', label='policy')
+plt.plot(grid_a, a2_nl[:,1], marker='o', color='blue', label='policy')
+plt.plot(grid_a, a2_nl[:,2], marker='o', color='blue', label='policy')
+plt.xlabel('asset at middle')
+plt.ylabel('asset at old')
+plt.grid(True)
+plt.xlim(0.0, 2.0)
+plt.ylim(0.0, 2.0)
+plt.show()
+
+plt.figure()
+plt.plot(grid_a, a1_nl[:,0], marker='o', color='blue', label='policy')
+plt.plot(grid_a, a1_nl[:,1], marker='o', color='blue', label='policy')
+plt.plot(grid_a, a1_nl[:,2], marker='o', color='blue', label='policy')
+plt.xlabel('asset at young')
+plt.ylabel('asset at middle')
+plt.xlim(0.0, 2.0)
+plt.ylim(0.0, 2.0)
+plt.grid(True)
+plt.show()      
